@@ -14,7 +14,7 @@ contract Lottery {
 
     function enter() public payable {
         require(
-            msg.value > 0.001 ether,
+            msg.value > 0.1 ether,
             "Send atleast 1 ether to enter into this lottery !!"
         );
         players.push(msg.sender);
@@ -58,5 +58,9 @@ contract Lottery {
 
     function getPlayers() public view returns (address[] memory) {
         return players;
+    }
+
+    function removeAll() public restricted {
+        players = new address[](0);
     }
 }
